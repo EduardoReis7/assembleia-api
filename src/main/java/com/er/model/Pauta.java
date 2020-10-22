@@ -1,4 +1,4 @@
-package model;
+package com.er.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "assembleia")
-public class Assembleia implements Serializable {
+@Table(name = "pauta")
+public class Pauta implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_assembleia")
+    @Column(name = "cod_pauta")
     private Long id;
 
     @Column(name = "titulo")
@@ -23,14 +23,17 @@ public class Assembleia implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "data_assembleia")
-    private LocalDateTime dataAssembleia;
-
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assembleia", cascade = CascadeType.REMOVE)
-    private List<Pauta> listaPautas = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "cod_assembleia", nullable = false)
+    private Assembleia assembleia;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pauta", cascade = CascadeType.REMOVE)
+    private List<ItemPauta> listaItensPauta = new ArrayList<>();
+
+    private Sessao sessao;
 
     public Long getId() {
         return id;
@@ -56,14 +59,6 @@ public class Assembleia implements Serializable {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataAssembleia() {
-        return dataAssembleia;
-    }
-
-    public void setDataAssembleia(LocalDateTime dataAssembleia) {
-        this.dataAssembleia = dataAssembleia;
-    }
-
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
@@ -72,11 +67,27 @@ public class Assembleia implements Serializable {
         this.dataCriacao = dataCriacao;
     }
 
-    public List<Pauta> getListaPautas() {
-        return listaPautas;
+    public Assembleia getAssembleia() {
+        return assembleia;
     }
 
-    public void setListaPautas(List<Pauta> listaPautas) {
-        this.listaPautas = listaPautas;
+    public void setAssembleia(Assembleia assembleia) {
+        this.assembleia = assembleia;
+    }
+
+    public List<ItemPauta> getListaItensPauta() {
+        return listaItensPauta;
+    }
+
+    public void setListaItensPauta(List<ItemPauta> listaItensPauta) {
+        this.listaItensPauta = listaItensPauta;
+    }
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
     }
 }
