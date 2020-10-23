@@ -25,7 +25,7 @@ public class SwaggerConfig {
                 .apiInfo(metaInfo());
     }
 
-    public ApiInfo metaInfo() {
+    private ApiInfo metaInfo() {
         return new ApiInfo(
             "Desafio Sicredi: API CRUD em SpringBoot",
             "API para gerenciamento de votações em assembleias.",
