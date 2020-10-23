@@ -1,8 +1,8 @@
-package com.er.services.impl;
+package com.er.assembleia.services.impl;
 
-import com.er.model.Assembleia;
-import com.er.repository.AssembleiaRepository;
-import com.er.services.AssembleiaService;
+import com.er.assembleia.model.Assembleia;
+import com.er.assembleia.repository.AssembleiaRepository;
+import com.er.assembleia.services.AssembleiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

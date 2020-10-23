@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan("com.er.model")
+@EntityScan("com.er.assembleia.model")
 public class AssembleiaApiApplication {
 
     public static void main(String[] args) {

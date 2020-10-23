@@ -1,17 +1,20 @@
-package com.er.model;
+package com.er.assembleia.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "item_pauta")
-public class ItemPauta implements Serializable {
+@Table(name = "pauta")
+public class Pauta implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cod_pauta")
     private Long id;
 
     @Column(name = "titulo")
@@ -23,9 +26,12 @@ public class ItemPauta implements Serializable {
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
-    @ManyToMany
-    @JoinColumn(name = "cod_pauta", nullable = false)
-    private Pauta pauta;
+    @ManyToOne
+    @JoinColumn(name = "cod_assembleia", nullable = false)
+    private Assembleia assembleia;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pauta", cascade = CascadeType.REMOVE)
+    private List<ItemPauta> listaItensPauta = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -59,11 +65,19 @@ public class ItemPauta implements Serializable {
         this.dataCriacao = dataCriacao;
     }
 
-    public Pauta getPauta() {
-        return pauta;
+    public Assembleia getAssembleia() {
+        return assembleia;
     }
 
-    public void setPauta(Pauta pauta) {
-        this.pauta = pauta;
+    public void setAssembleia(Assembleia assembleia) {
+        this.assembleia = assembleia;
+    }
+
+    public List<ItemPauta> getListaItensPauta() {
+        return listaItensPauta;
+    }
+
+    public void setListaItensPauta(List<ItemPauta> listaItensPauta) {
+        this.listaItensPauta = listaItensPauta;
     }
 }

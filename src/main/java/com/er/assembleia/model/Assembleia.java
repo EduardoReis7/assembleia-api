@@ -1,4 +1,4 @@
-package com.er.model;
+package com.er.assembleia.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

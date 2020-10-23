@@ -1,6 +1,6 @@
-package com.er.services;
+package com.er.assembleia.services;
 
-import com.er.model.Assembleia;
+import com.er.assembleia.model.Assembleia;
 
 public interface AssembleiaService {
 

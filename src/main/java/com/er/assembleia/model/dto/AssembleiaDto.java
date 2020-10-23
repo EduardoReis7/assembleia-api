@@ -1,6 +1,6 @@
-package com.er.model.dto;
+package com.er.assembleia.model.dto;
 
-import com.er.model.Assembleia;
+import com.er.assembleia.model.Assembleia;
 
 import java.time.LocalDateTime;
 

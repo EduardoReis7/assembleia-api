@@ -1,7 +1,7 @@
-package com.er.util;
+package com.er.assembleia.util;
 
-import com.er.model.Assembleia;
-import com.er.model.dto.AssembleiaDto;
+import com.er.assembleia.model.Assembleia;
+import com.er.assembleia.model.dto.AssembleiaDto;
 
 public class AssembleiaUtil {
 
