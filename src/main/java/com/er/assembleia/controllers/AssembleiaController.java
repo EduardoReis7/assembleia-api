@@ -41,5 +41,11 @@ public class AssembleiaController {
         return ResponseEntity.ok(assembleiaDtoPage);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> deletarAssembleia(@PathVariable Long id) {
+        assembleiaService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

@@ -31,4 +31,10 @@ public class AssembleiaServiceImpl implements AssembleiaService {
     public Page<Assembleia> findAll(Pageable pageable) {
         return assembleiaRepository.findAll(pageable);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        assembleiaRepository.findById(id);
+        assembleiaRepository.deleteById(id);
+    }
 }
