@@ -2,6 +2,7 @@ package com.er.assembleia.controllers;
 
 import com.er.assembleia.model.Assembleia;
 import com.er.assembleia.model.dto.AssembleiaDto;
+import com.er.assembleia.model.forms.AtualizarAssembleiaForm;
 import com.er.assembleia.services.AssembleiaService;
 import com.er.assembleia.util.AssembleiaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,15 @@ public class AssembleiaController {
     public ResponseEntity<?> deletarAssembleia(@PathVariable Long id) {
         assembleiaService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AssembleiaDto> atualizarAssembleia(@PathVariable Long id, @Valid @RequestBody AtualizarAssembleiaForm form) {
+        Assembleia assembleia = AssembleiaUtil.convertAtualizarAssembleiaFormToAssembleia(form);
+        assembleia.setId(id);
+        assembleia = assembleiaService.update(assembleia);
+
+        return  ResponseEntity.ok(AssembleiaUtil.convertAssembleiaToAssembleiaDto(assembleia));
     }
 
 

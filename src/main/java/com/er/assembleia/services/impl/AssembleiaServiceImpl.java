@@ -37,4 +37,21 @@ public class AssembleiaServiceImpl implements AssembleiaService {
         assembleiaRepository.findById(id);
         assembleiaRepository.deleteById(id);
     }
+
+    @Override
+    public Assembleia update(Assembleia assembleia) {
+        Assembleia assembleiaExistente = findById(assembleia.getId());
+
+        if (assembleia.getDescricao() != null) {
+            assembleiaExistente.setDescricao(assembleia.getDescricao());
+        }
+        if (assembleia.getDataAssembleia() != null) {
+            assembleiaExistente.setDataAssembleia(assembleia.getDataAssembleia());
+        }
+        if (assembleia.getTitulo() != null) {
+            assembleiaExistente.setTitulo(assembleia.getTitulo());
+        }
+
+        return assembleiaRepository.save(assembleiaExistente);
+    }
 }

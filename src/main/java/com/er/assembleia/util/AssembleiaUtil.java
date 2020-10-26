@@ -2,6 +2,7 @@ package com.er.assembleia.util;
 
 import com.er.assembleia.model.Assembleia;
 import com.er.assembleia.model.dto.AssembleiaDto;
+import com.er.assembleia.model.forms.AtualizarAssembleiaForm;
 
 public class AssembleiaUtil {
 
@@ -25,5 +26,14 @@ public class AssembleiaUtil {
         dto.setDataCriacao(entity.getDataCriacao());
 
         return dto;
+    }
+
+    public static Assembleia convertAtualizarAssembleiaFormToAssembleia(AtualizarAssembleiaForm form) {
+        Assembleia assembleia = new Assembleia();
+        assembleia.setTitulo(form.getTitulo());
+        assembleia.setDescricao(form.getDescricao());
+        assembleia.setDataAssembleia(form.getDataAssembleia());
+
+        return assembleia;
     }
 }
