@@ -11,7 +11,7 @@ public class AssembleiaUtil {
         entity.setTitulo(dto.getTitulo());
         entity.setDescricao(dto.getDescricao());
         entity.setDataAssembleia(dto.getDataAssembleia());
-        entity.setDataCriacao(dto.getDataCriação());
+        entity.setDataCriacao(dto.getDataCriacao());
 
         return entity;
     }
@@ -22,7 +22,7 @@ public class AssembleiaUtil {
         dto.setTitulo(entity.getTitulo());
         dto.setDescricao(entity.getDescricao());
         dto.setDataAssembleia(entity.getDataAssembleia());
-        dto.setDataCriação(entity.getDataCriacao());
+        dto.setDataCriacao(entity.getDataCriacao());
 
         return dto;
     }

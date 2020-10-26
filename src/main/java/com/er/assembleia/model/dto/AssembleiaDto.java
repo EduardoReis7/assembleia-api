@@ -1,6 +1,8 @@
 package com.er.assembleia.model.dto;
 
 import com.er.assembleia.model.Assembleia;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -10,8 +12,10 @@ public class AssembleiaDto {
     private Long id;
     private String titulo;
     private String descricao;
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime dataAssembleia;
-    private LocalDateTime dataCriação;
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    private LocalDateTime dataCriacao;
 
     public AssembleiaDto() {
     }
@@ -21,7 +25,7 @@ public class AssembleiaDto {
         this.titulo = assembleia.getTitulo();
         this.descricao = assembleia.getDescricao();
         this.dataAssembleia = assembleia.getDataAssembleia();
-        this.dataCriação = assembleia.getDataCriacao();
+        this.dataCriacao = assembleia.getDataCriacao();
     }
 
     public Long getId() {
@@ -56,12 +60,11 @@ public class AssembleiaDto {
         this.dataAssembleia = dataAssembleia;
     }
 
-    public LocalDateTime getDataCriação() {
-        return dataCriação;
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setDataCriação(LocalDateTime dataCriação) {
-        this.dataCriação = dataCriação;
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
-
 }

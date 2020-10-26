@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/assembleia")
@@ -19,9 +22,9 @@ public class AssembleiaController {
     private AssembleiaService assembleiaService;
 
     @PostMapping
-    public ResponseEntity<Assembleia> cadastrar(AssembleiaDto dto) {
+    public ResponseEntity<Assembleia> cadastrar(@Valid @RequestBody AssembleiaDto dto) {
         Assembleia assembleia = assembleiaService.save(AssembleiaUtil.convertAssembleiaDtoToAssembleia(dto));
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(assembleia);
     }
 }
