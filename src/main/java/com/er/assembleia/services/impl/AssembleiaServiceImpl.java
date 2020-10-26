@@ -6,6 +6,8 @@ import com.er.assembleia.services.AssembleiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AssembleiaServiceImpl implements AssembleiaService {
 
@@ -15,5 +17,11 @@ public class AssembleiaServiceImpl implements AssembleiaService {
     @Override
     public Assembleia save(Assembleia assembleia) {
         return assembleiaRepository.save(assembleia);
+    }
+
+    @Override
+    public Assembleia findById(Long id) {
+        Optional<Assembleia> assembleia = assembleiaRepository.findById(id);
+        return assembleia.orElse(null);
     }
 }

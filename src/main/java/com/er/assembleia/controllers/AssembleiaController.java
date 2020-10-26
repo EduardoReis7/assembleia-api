@@ -7,10 +7,7 @@ import com.er.assembleia.util.AssembleiaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -26,5 +23,12 @@ public class AssembleiaController {
         Assembleia assembleia = assembleiaService.save(AssembleiaUtil.convertAssembleiaDtoToAssembleia(dto));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(assembleia);
+    }
+
+    @GetMapping( value = "/{id}")
+    public ResponseEntity<AssembleiaDto> buscarAssembleiaPorId(@PathVariable Long id) {
+        Assembleia assembleia = assembleiaService.findById(id);
+        AssembleiaDto dto = AssembleiaUtil.convertAssembleiaToAssembleiaDto(assembleia);
+        return ResponseEntity.ok(dto);
     }
 }
