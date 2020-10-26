@@ -5,6 +5,8 @@ import com.er.assembleia.model.dto.AssembleiaDto;
 import com.er.assembleia.services.AssembleiaService;
 import com.er.assembleia.util.AssembleiaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,4 +33,13 @@ public class AssembleiaController {
         AssembleiaDto dto = AssembleiaUtil.convertAssembleiaToAssembleiaDto(assembleia);
         return ResponseEntity.ok(dto);
     }
+
+    @GetMapping
+    public ResponseEntity<Page<AssembleiaDto>> listarAssembleias(Pageable pageable) {
+        Page<Assembleia> assembleiaPage = assembleiaService.findAll(pageable);
+        Page<AssembleiaDto> assembleiaDtoPage = assembleiaPage.map(AssembleiaUtil::convertAssembleiaToAssembleiaDto);
+        return ResponseEntity.ok(assembleiaDtoPage);
+    }
+
+
 }

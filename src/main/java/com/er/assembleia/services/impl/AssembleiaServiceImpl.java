@@ -4,6 +4,8 @@ import com.er.assembleia.model.Assembleia;
 import com.er.assembleia.repository.AssembleiaRepository;
 import com.er.assembleia.services.AssembleiaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,5 +25,10 @@ public class AssembleiaServiceImpl implements AssembleiaService {
     public Assembleia findById(Long id) {
         Optional<Assembleia> assembleia = assembleiaRepository.findById(id);
         return assembleia.orElse(null);
+    }
+
+    @Override
+    public Page<Assembleia> findAll(Pageable pageable) {
+        return assembleiaRepository.findAll(pageable);
     }
 }
