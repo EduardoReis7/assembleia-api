@@ -1,6 +1,6 @@
 package com.er.assembleia.model;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Embeddable
@@ -24,4 +24,6 @@ public class Sessao {
     public void setDuracaoSessao(Long duracaoSessao) {
         this.duracaoSessao = duracaoSessao;
     }
+
+
 }

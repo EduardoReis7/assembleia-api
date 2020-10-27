@@ -13,7 +13,8 @@ public class AssembleiaUtil {
         entity.setId(dto.getId());
         entity.setTitulo(dto.getTitulo());
         entity.setDescricao(dto.getDescricao());
-        entity.setDataAssembleia(dto.getDataAssembleia());
+        entity.setInicioAssembleia(dto.getInicioAssembleia());
+        entity.setFimAssembleia(dto.getFimAssembleia());
         entity.setDataCriacao(dto.getDataCriacao());
 
         return entity;
@@ -24,7 +25,8 @@ public class AssembleiaUtil {
         dto.setId(entity.getId());
         dto.setTitulo(entity.getTitulo());
         dto.setDescricao(entity.getDescricao());
-        dto.setDataAssembleia(entity.getDataAssembleia());
+        dto.setInicioAssembleia(entity.getInicioAssembleia());
+        dto.setFimAssembleia(entity.getFimAssembleia());
         dto.setDataCriacao(entity.getDataCriacao());
 
         return dto;
@@ -34,7 +36,8 @@ public class AssembleiaUtil {
         Assembleia assembleia = new Assembleia();
         assembleia.setTitulo(form.getTitulo());
         assembleia.setDescricao(form.getDescricao());
-        assembleia.setDataAssembleia(form.getDataAssembleia());
+        assembleia.setInicioAssembleia(form.getInicioAssembleia());
+        assembleia.setFimAssembleia(form.getFimAssembleia());
 
         return assembleia;
     }

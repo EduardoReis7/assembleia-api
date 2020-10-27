@@ -12,7 +12,9 @@ public class AtualizarAssembleiaForm {
     @Size(max = 150)
     private String descricao;
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-    private LocalDateTime dataAssembleia;
+    private LocalDateTime inicioAssembleia;
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    private LocalDateTime fimAssembleia;
 
     public AtualizarAssembleiaForm() {
     }
@@ -33,11 +35,19 @@ public class AtualizarAssembleiaForm {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataAssembleia() {
-        return dataAssembleia;
+    public LocalDateTime getInicioAssembleia() {
+        return inicioAssembleia;
     }
 
-    public void setDataAssembleia(LocalDateTime dataAssembleia) {
-        this.dataAssembleia = dataAssembleia;
+    public void setInicioAssembleia(LocalDateTime inicioAssembleia) {
+        this.inicioAssembleia = inicioAssembleia;
+    }
+
+    public LocalDateTime getFimAssembleia() {
+        return fimAssembleia;
+    }
+
+    public void setFimAssembleia(LocalDateTime fimAssembleia) {
+        this.fimAssembleia = fimAssembleia;
     }
 }

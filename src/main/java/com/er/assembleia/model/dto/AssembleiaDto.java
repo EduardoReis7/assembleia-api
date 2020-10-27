@@ -13,7 +13,9 @@ public class AssembleiaDto {
     private String titulo;
     private String descricao;
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-    private LocalDateTime dataAssembleia;
+    private LocalDateTime inicioAssembleia;
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    private LocalDateTime fimAssembleia;
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime dataCriacao;
 
@@ -24,7 +26,8 @@ public class AssembleiaDto {
         this.id = assembleia.getId();
         this.titulo = assembleia.getTitulo();
         this.descricao = assembleia.getDescricao();
-        this.dataAssembleia = assembleia.getDataAssembleia();
+        this.inicioAssembleia = assembleia.getInicioAssembleia();
+        this.fimAssembleia = assembleia.getFimAssembleia();
         this.dataCriacao = assembleia.getDataCriacao();
     }
 
@@ -52,12 +55,20 @@ public class AssembleiaDto {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataAssembleia() {
-        return dataAssembleia;
+    public LocalDateTime getInicioAssembleia() {
+        return inicioAssembleia;
     }
 
-    public void setDataAssembleia(LocalDateTime dataAssembleia) {
-        this.dataAssembleia = dataAssembleia;
+    public void setInicioAssembleia(LocalDateTime inicioAssembleia) {
+        this.inicioAssembleia = inicioAssembleia;
+    }
+
+    public LocalDateTime getFimAssembleia() {
+        return fimAssembleia;
+    }
+
+    public void setFimAssembleia(LocalDateTime fimAssembleia) {
+        this.fimAssembleia = fimAssembleia;
     }
 
     public LocalDateTime getDataCriacao() {

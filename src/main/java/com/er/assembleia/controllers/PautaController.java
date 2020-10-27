@@ -31,10 +31,17 @@ public class PautaController {
         form.setAssembleiaId(assembleiaId);
         Pauta pauta = pautaService.save(pautaUtil.convertPautaFormToPauta(form));
 
-
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{pautaId}")
                     .buildAndExpand(pauta.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    @GetMapping(value = "/{pautaId}")
+    public ResponseEntity<PautaDto> buscarPauta(@PathVariable Long pautaId) {
+        Pauta pauta = pautaService.findById(pautaId);
+        PautaDto dto = pautaUtil.convertPautaToPautaDto(pauta);
+
+        return ResponseEntity.ok(dto);
     }
 }

@@ -30,9 +30,6 @@ public class Pauta implements Serializable {
     @JoinColumn(name = "cod_assembleia", nullable = false)
     private Assembleia assembleia;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pauta", cascade = CascadeType.REMOVE)
-    private List<ItemPauta> listaItensPauta = new ArrayList<>();
-
     @Embedded
     private Sessao sessao;
 
@@ -74,14 +71,6 @@ public class Pauta implements Serializable {
 
     public void setAssembleia(Assembleia assembleia) {
         this.assembleia = assembleia;
-    }
-
-    public List<ItemPauta> getListaItensPauta() {
-        return listaItensPauta;
-    }
-
-    public void setListaItensPauta(List<ItemPauta> listaItensPauta) {
-        this.listaItensPauta = listaItensPauta;
     }
 
     public Sessao getSessao() {

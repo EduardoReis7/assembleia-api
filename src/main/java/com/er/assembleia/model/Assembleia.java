@@ -23,8 +23,11 @@ public class Assembleia implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "data_assembleia")
-    private LocalDateTime dataAssembleia;
+    @Column(name = "inicio_assembleia")
+    private LocalDateTime inicioAssembleia;
+
+    @Column(name = "fim_assembleia")
+    private LocalDateTime fimAssembleia;
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
@@ -52,16 +55,24 @@ public class Assembleia implements Serializable {
         return descricao;
     }
 
+    public LocalDateTime getInicioAssembleia() {
+        return inicioAssembleia;
+    }
+
+    public void setInicioAssembleia(LocalDateTime inicioAssembleia) {
+        this.inicioAssembleia = inicioAssembleia;
+    }
+
+    public LocalDateTime getFimAssembleia() {
+        return fimAssembleia;
+    }
+
+    public void setFimAssembleia(LocalDateTime fimAssembleia) {
+        this.fimAssembleia = fimAssembleia;
+    }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public LocalDateTime getDataAssembleia() {
-        return dataAssembleia;
-    }
-
-    public void setDataAssembleia(LocalDateTime dataAssembleia) {
-        this.dataAssembleia = dataAssembleia;
     }
 
     public LocalDateTime getDataCriacao() {

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,7 @@ public class AssembleiaServiceImpl implements AssembleiaService {
 
     @Override
     public Assembleia save(Assembleia assembleia) {
+        assembleia.setDataCriacao(LocalDateTime.now());
         return assembleiaRepository.save(assembleia);
     }
 
@@ -45,8 +47,11 @@ public class AssembleiaServiceImpl implements AssembleiaService {
         if (assembleia.getDescricao() != null) {
             assembleiaExistente.setDescricao(assembleia.getDescricao());
         }
-        if (assembleia.getDataAssembleia() != null) {
-            assembleiaExistente.setDataAssembleia(assembleia.getDataAssembleia());
+        if (assembleia.getInicioAssembleia() != null) {
+            assembleiaExistente.setInicioAssembleia(assembleia.getInicioAssembleia());
+        }
+        if (assembleia.getFimAssembleia() != null) {
+            assembleiaExistente.setFimAssembleia(assembleia.getFimAssembleia());
         }
         if (assembleia.getTitulo() != null) {
             assembleiaExistente.setTitulo(assembleia.getTitulo());

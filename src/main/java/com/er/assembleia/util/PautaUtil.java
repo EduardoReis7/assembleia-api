@@ -39,10 +39,8 @@ public class PautaUtil {
         dto.setTitulo(pauta.getTitulo());
         dto.setDescricao(pauta.getDescricao());
         dto.setDataCriacao(pauta.getDataCriacao());
-
-        Sessao sessao = new Sessao();
-        sessao.setInicioSessao(dto.getInicioSessao());
-        sessao.setDuracaoSessao(dto.getDuracao());
+        dto.setInicioSessao(pauta.getSessao().getInicioSessao());
+        dto.setDuracao(pauta.getSessao().getDuracaoSessao());
 
         return dto;
     }

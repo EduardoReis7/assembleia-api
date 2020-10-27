@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class PautaServiceImpl implements PautaService {
@@ -18,5 +19,11 @@ public class PautaServiceImpl implements PautaService {
     public Pauta save(Pauta pauta) {
         pauta.setDataCriacao(LocalDateTime.now());
         return (Pauta) pautaRepository.save(pauta);
+    }
+
+    @Override
+    public Pauta findById(Long pautaId) {
+        Optional<Pauta> optPauta = pautaRepository.findById(pautaId);
+        return optPauta.orElse(null);
     }
 }
