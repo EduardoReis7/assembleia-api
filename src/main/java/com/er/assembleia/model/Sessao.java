@@ -25,5 +25,12 @@ public class Sessao {
         this.duracaoSessao = duracaoSessao;
     }
 
+    public boolean isAberta() {
+        if (inicioSessao == null || duracaoSessao == null) {
+            return false;
+        }
+        LocalDateTime termino = inicioSessao.plusSeconds(duracaoSessao);
+        return LocalDateTime.now().isBefore(termino);
+    }
 
 }
