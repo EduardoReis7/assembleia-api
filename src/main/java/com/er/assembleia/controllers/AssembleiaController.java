@@ -5,40 +5,50 @@ import com.er.assembleia.model.dto.AssembleiaDto;
 import com.er.assembleia.model.forms.AtualizarAssembleiaForm;
 import com.er.assembleia.services.AssembleiaService;
 import com.er.assembleia.util.AssembleiaUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/assembleia")
 public class AssembleiaController {
 
-    @Autowired
-    private AssembleiaService assembleiaService;
+    private final AssembleiaService assembleiaService;
+
+    private final AssembleiaUtil assembleiaUtil;
+
+    public AssembleiaController(AssembleiaService assembleiaService, AssembleiaUtil assembleiaUtil) {
+        this.assembleiaService = assembleiaService;
+        this.assembleiaUtil = assembleiaUtil;
+    }
 
     @PostMapping
     public ResponseEntity<Assembleia> cadastrar(@Valid @RequestBody AssembleiaDto dto) {
-        Assembleia assembleia = assembleiaService.save(AssembleiaUtil.convertAssembleiaDtoToAssembleia(dto));
+        Assembleia assembleia = assembleiaService.save(assembleiaUtil.convertAssembleiaDtoToAssembleia(dto));
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(assembleia);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{assembleiaId}")
+                    .buildAndExpand(assembleia.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping( value = "/{id}")
     public ResponseEntity<AssembleiaDto> buscarAssembleiaPorId(@PathVariable Long id) {
         Assembleia assembleia = assembleiaService.findById(id);
-        AssembleiaDto dto = AssembleiaUtil.convertAssembleiaToAssembleiaDto(assembleia);
+        AssembleiaDto dto = assembleiaUtil.convertAssembleiaToAssembleiaDto(assembleia);
         return ResponseEntity.ok(dto);
     }
 
     @GetMapping
     public ResponseEntity<Page<AssembleiaDto>> listarAssembleias(Pageable pageable) {
         Page<Assembleia> assembleiaPage = assembleiaService.findAll(pageable);
-        Page<AssembleiaDto> assembleiaDtoPage = assembleiaPage.map(AssembleiaUtil::convertAssembleiaToAssembleiaDto);
+        Page<AssembleiaDto> assembleiaDtoPage = assembleiaPage.map(assembleiaUtil::convertAssembleiaToAssembleiaDto);
         return ResponseEntity.ok(assembleiaDtoPage);
     }
 
@@ -50,11 +60,11 @@ public class AssembleiaController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<AssembleiaDto> atualizarAssembleia(@PathVariable Long id, @Valid @RequestBody AtualizarAssembleiaForm form) {
-        Assembleia assembleia = AssembleiaUtil.convertAtualizarAssembleiaFormToAssembleia(form);
+        Assembleia assembleia = assembleiaUtil.convertAtualizarAssembleiaFormToAssembleia(form);
         assembleia.setId(id);
         assembleia = assembleiaService.update(assembleia);
 
-        return  ResponseEntity.ok(AssembleiaUtil.convertAssembleiaToAssembleiaDto(assembleia));
+        return  ResponseEntity.ok(assembleiaUtil.convertAssembleiaToAssembleiaDto(assembleia));
     }
 
 

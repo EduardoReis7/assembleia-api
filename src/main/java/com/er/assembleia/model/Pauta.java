@@ -33,6 +33,9 @@ public class Pauta implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pauta", cascade = CascadeType.REMOVE)
     private List<ItemPauta> listaItensPauta = new ArrayList<>();
 
+    @Embedded
+    private Sessao sessao;
+
     public Long getId() {
         return id;
     }
@@ -79,5 +82,13 @@ public class Pauta implements Serializable {
 
     public void setListaItensPauta(List<ItemPauta> listaItensPauta) {
         this.listaItensPauta = listaItensPauta;
+    }
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
     }
 }

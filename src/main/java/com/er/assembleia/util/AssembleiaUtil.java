@@ -3,10 +3,12 @@ package com.er.assembleia.util;
 import com.er.assembleia.model.Assembleia;
 import com.er.assembleia.model.dto.AssembleiaDto;
 import com.er.assembleia.model.forms.AtualizarAssembleiaForm;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AssembleiaUtil {
 
-    public static Assembleia convertAssembleiaDtoToAssembleia(AssembleiaDto dto) {
+    public Assembleia convertAssembleiaDtoToAssembleia(AssembleiaDto dto) {
         Assembleia entity = new Assembleia();
         entity.setId(dto.getId());
         entity.setTitulo(dto.getTitulo());
@@ -17,7 +19,7 @@ public class AssembleiaUtil {
         return entity;
     }
 
-    public static AssembleiaDto convertAssembleiaToAssembleiaDto(Assembleia entity) {
+    public AssembleiaDto convertAssembleiaToAssembleiaDto(Assembleia entity) {
         AssembleiaDto dto = new AssembleiaDto();
         dto.setId(entity.getId());
         dto.setTitulo(entity.getTitulo());
@@ -28,7 +30,7 @@ public class AssembleiaUtil {
         return dto;
     }
 
-    public static Assembleia convertAtualizarAssembleiaFormToAssembleia(AtualizarAssembleiaForm form) {
+    public Assembleia convertAtualizarAssembleiaFormToAssembleia(AtualizarAssembleiaForm form) {
         Assembleia assembleia = new Assembleia();
         assembleia.setTitulo(form.getTitulo());
         assembleia.setDescricao(form.getDescricao());
