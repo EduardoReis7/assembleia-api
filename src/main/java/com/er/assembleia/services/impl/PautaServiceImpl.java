@@ -26,4 +26,10 @@ public class PautaServiceImpl implements PautaService {
         Optional<Pauta> optPauta = pautaRepository.findById(pautaId);
         return optPauta.orElse(null);
     }
+
+    @Override
+    public void delete(Long pautaId) {
+        pautaRepository.findById(pautaId);
+        pautaRepository.deleteById(pautaId);
+    }
 }

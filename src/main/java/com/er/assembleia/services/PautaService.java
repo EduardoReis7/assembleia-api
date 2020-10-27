@@ -7,4 +7,5 @@ public interface PautaService {
 
     Pauta save(Pauta pauta);
     Pauta findById(Long pautaId);
+    void delete(Long pautaId);
 }

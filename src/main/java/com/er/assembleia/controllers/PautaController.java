@@ -44,4 +44,11 @@ public class PautaController {
 
         return ResponseEntity.ok(dto);
     }
+
+    @DeleteMapping(value = "/{pautaId}")
+    public ResponseEntity<?> deletarPauta(@PathVariable Long pautaId) {
+        pautaService.delete(pautaId);
+
+        return ResponseEntity.noContent().build();
+    }
 }
