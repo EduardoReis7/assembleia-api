@@ -21,6 +21,13 @@ public class Voto {
         this.voto = voto;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public Boolean getVoto() {
         return voto;
     }
@@ -36,4 +43,5 @@ public class Voto {
     public void setPautaId(Long pautaId) {
         this.pautaId = pautaId;
     }
+
 }
