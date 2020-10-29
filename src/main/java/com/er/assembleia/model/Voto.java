@@ -11,13 +11,17 @@ public class Voto {
     private Long id;
     @Column(name = "voto")
     private Boolean voto;
-    @Column(name = "cod_pauta")
-    private Long pautaId;
+
+    @Embedded
+    private VotoAssociadoPauta votoAssociadoPauta;
 
     public Voto() {}
 
-    public Voto(Long pautaId, Boolean voto) {
-        this.pautaId = pautaId;
+    public Voto(Pauta pauta, Boolean voto, Associado associado) {
+        this.votoAssociadoPauta = new VotoAssociadoPauta(
+                pauta.getId(),
+                associado.getId()
+        );
         this.voto = voto;
     }
 
@@ -36,12 +40,6 @@ public class Voto {
         this.voto = voto;
     }
 
-    public Long getPautaId() {
-        return pautaId;
-    }
 
-    public void setPautaId(Long pautaId) {
-        this.pautaId = pautaId;
-    }
 
 }
