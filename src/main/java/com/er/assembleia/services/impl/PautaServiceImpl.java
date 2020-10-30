@@ -1,10 +1,13 @@
 package com.er.assembleia.services.impl;
 
+import com.er.assembleia.model.Assembleia;
 import com.er.assembleia.model.Pauta;
+import com.er.assembleia.repository.AssembleiaRepository;
 import com.er.assembleia.repository.PautaRepository;
 import com.er.assembleia.services.PautaService;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -12,14 +15,18 @@ import java.util.Optional;
 public class PautaServiceImpl implements PautaService {
 
     private final PautaRepository pautaRepository;
+    private final AssembleiaRepository assembleiaRepository;
 
-    public PautaServiceImpl(PautaRepository pautaRepository) {
+    public PautaServiceImpl(PautaRepository pautaRepository, AssembleiaRepository assembleiaRepository) {
         this.pautaRepository = pautaRepository;
+        this.assembleiaRepository = assembleiaRepository;
     }
 
     @Override
     public Pauta save(Pauta pauta) {
         pauta.setDataCriacao(LocalDateTime.now());
+        Optional<Assembleia> optAssembleia = assembleiaRepository.findById(pauta.getAssembleia().getId());
+
         return (Pauta) pautaRepository.save(pauta);
     }
 
